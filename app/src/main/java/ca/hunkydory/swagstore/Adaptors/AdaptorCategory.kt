@@ -21,7 +21,7 @@ class AdaptorCategory(context: Context, categories: List<Category>) : BaseAdapte
         val holder : ViewHolder
 //checks if the views have ben created first
         if (convertView == null){
-//inflates empty views
+//inflates empty views and assigns a view layout
             categoryView = LayoutInflater.from(context).inflate(R.layout.listview_item_category, null)
             holder = ViewHolder()
 //puts the empty views into the holder
@@ -33,8 +33,9 @@ class AdaptorCategory(context: Context, categories: List<Category>) : BaseAdapte
             holder = convertView.tag as ViewHolder
             categoryView = convertView
         }
-
+//populates a text data into view
         val category = categories[position]
+//creates an image view to be populated my an image
         val resourceId = context.resources.getIdentifier(category.image, "drawable", context.packageName)
 //puts the data into the holder
         holder.categoryImage?.setImageResource(resourceId)
