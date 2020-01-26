@@ -3,6 +3,7 @@ package ca.hunkydory.swagstore.Activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import ca.hunkydory.swagstore.Adaptors.AdaptorCategory
 import ca.hunkydory.swagstore.Model.Category
 import ca.hunkydory.swagstore.R
@@ -19,8 +20,14 @@ class MainActivity : AppCompatActivity() {
 
         adapter = AdaptorCategory(this, DataService.categories)
         listviewCategory.adapter = adapter
-    }
 
+        listviewCategory.setOnItemClickListener { adapterView, view, i, l ->
+            val category = DataService.categories[i]
+            Toast.makeText(this, "You Clicked on ${category.title} cell", Toast.LENGTH_SHORT).show()
+
+
+        }
+    }
 
 
 }
