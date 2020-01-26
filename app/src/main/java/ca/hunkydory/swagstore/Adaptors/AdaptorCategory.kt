@@ -16,18 +16,29 @@ class AdaptorCategory(context: Context, categories: List<Category>) : BaseAdapte
     val context = context
     val categories = categories
 
-
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val categoryView: View
-        categoryView = LayoutInflater.from(context).inflate(R.layout.listview_item_category, null)
-        val categoryImage : ImageView = categoryView.findViewById(R.id.imageCategoryBackground)
-        val categoryName : TextView = categoryView.findViewById(R.id.txtCategoryName)
-        val category = categories[position]
+        val holder : ViewHolder
+//checks if the views have ben created first
+        if (convertView == null){
+//inflates empty views
+            categoryView = LayoutInflater.from(context).inflate(R.layout.listview_item_category, null)
+            holder = ViewHolder()
+//puts the empty views into the holder
+            holder.categoryImage = categoryView.findViewById(R.id.imageCategoryBackground)
+            holder.categoryName  = categoryView.findViewById(R.id.txtCategoryName)
 
+            categoryView.tag = holder
+        } else {
+            holder = convertView.tag as ViewHolder
+            categoryView = convertView
+        }
+
+        val category = categories[position]
         val resourceId = context.resources.getIdentifier(category.image, "drawable", context.packageName)
-        categoryImage.setImageResource(resourceId)
-        categoryName.text = category.title
+//puts the data into the holder
+        holder.categoryImage?.setImageResource(resourceId)
+        holder.categoryName?.text = category.title
 
         return categoryView
     }
@@ -42,5 +53,10 @@ class AdaptorCategory(context: Context, categories: List<Category>) : BaseAdapte
 
     override fun getCount(): Int {
        return categories.count()
+    }
+//creates the viewholder
+    private class ViewHolder {
+        var categoryImage: ImageView? = null
+        var categoryName: TextView? = null
     }
 }
