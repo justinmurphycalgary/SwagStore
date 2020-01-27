@@ -12,7 +12,6 @@ import ca.hunkydory.swagstore.R
 
 class CategoryRecycleAdapter(val context: Context, val categories: List<Category>) : RecyclerView.Adapter<CategoryRecycleAdapter.Holder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.listview_item_category, parent, false)
         return Holder(view)
