@@ -16,11 +16,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//feed the adaptor it's data
         adapter = CategoryRecycleAdapter(context = this, categories = DataService.categories)
+//assign the recycler view to the adaptor
         listviewCategory.adapter = adapter 
-
+//recycler view needs a layout manager
         val layoutManager = LinearLayoutManager(this)
         listviewCategory.layoutManager = layoutManager
+//optional make the cells a fixed size
         listviewCategory.setHasFixedSize(true)
 
 
