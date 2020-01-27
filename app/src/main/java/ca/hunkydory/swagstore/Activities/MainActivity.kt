@@ -1,33 +1,31 @@
 package ca.hunkydory.swagstore.Activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Toast
-import ca.hunkydory.swagstore.Adaptors.AdaptorCategory
-import ca.hunkydory.swagstore.Model.Category
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import ca.hunkydory.swagstore.Adaptors.CategoryRecycleAdapter
 import ca.hunkydory.swagstore.R
 import ca.hunkydory.swagstore.Services.DataService
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var adapter : AdaptorCategory
+//init the adapter
+    lateinit var adapter : CategoryRecycleAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adapter = AdaptorCategory(this, DataService.categories)
-        listviewCategory.adapter = adapter
+        adapter = CategoryRecycleAdapter(context = this, categories = DataService.categories)
+        listviewCategory.adapter = adapter 
 
-        listviewCategory.setOnItemClickListener { adapterView, view, i, l ->
-            val category = DataService.categories[i]
-            Toast.makeText(this, "You Clicked on ${category.title} cell", Toast.LENGTH_SHORT).show()
+        val layoutManager = LinearLayoutManager(this)
+        listviewCategory.layoutManager = layoutManager
+        listviewCategory.setHasFixedSize(true)
 
 
-        }
     }
+
 
 
 }

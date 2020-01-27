@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import ca.hunkydory.swagstore.Model.Category
 import ca.hunkydory.swagstore.R
-import kotlinx.android.synthetic.main.activity_main.*
 
 class AdaptorCategory(context: Context, categories: List<Category>) : BaseAdapter() {
 
@@ -26,7 +25,7 @@ class AdaptorCategory(context: Context, categories: List<Category>) : BaseAdapte
             holder = ViewHolder()
 //puts the empty views into the holder
             holder.categoryImage = categoryView.findViewById(R.id.imageCategoryBackground)
-            holder.categoryName  = categoryView.findViewById(R.id.txtCategoryName)
+          //  holder.categoryName  = categoryView.findViewById(R.id.txtCategoryName)
 
             categoryView.tag = holder
         } else {
